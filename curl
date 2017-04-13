@@ -1,0 +1,26 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: francis and winnie
+ * Date: 2017/4/13
+ * Time: 22:28
+ */
+header("Content-type:text/html;charset=gb2312");
+$ch = curl_init();
+
+
+curl_setopt($ch, CURLOPT_URL, "http://www.sbkk88.com/mingzhu/gudaicn/xiyouji/279775.html");
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+curl_setopt($ch, CURLOPT_HEADER, 0);
+
+//执行并获取HTML文档内容
+$output = curl_exec($ch);
+
+//释放curl句柄
+curl_close($ch);
+
+//打印获得的数据
+preg_match_all("/<div id=\"f_article\" class=\"f_article\".*?>.*?<\/div>/ism",$output,$match);
+print_r($match[0][0]);
+file_put_contents('xiyou.txt',$match[0][0]);
+//print_r($output);
