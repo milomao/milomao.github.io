@@ -5,22 +5,54 @@
  * Date: 2017/4/13
  * Time: 22:28
  */
-header("Content-type:text/html;charset=gb2312");
-$ch = curl_init();
-
-
-curl_setopt($ch, CURLOPT_URL, "http://www.sbkk88.com/mingzhu/gudaicn/xiyouji/279775.html");
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-curl_setopt($ch, CURLOPT_HEADER, 0);
+header("Content-type:text/html;charset=utf-8");
+for($num=279676;$num<279776;$num++){
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL, 'http://www.sbkk88.com/mingzhu/gudaicn/xiyouji/'.$num .'.html');
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+    curl_setopt($ch, CURLOPT_HEADER, 0);
 
 //执行并获取HTML文档内容
-$output = curl_exec($ch);
+    $output = curl_exec($ch);
 
 //释放curl句柄
-curl_close($ch);
+    curl_close($ch);
 
 //打印获得的数据
-preg_match_all("/<div id=\"f_article\" class=\"f_article\".*?>.*?<\/div>/ism",$output,$match);
-print_r($match[0][0]);
-file_put_contents('xiyou.txt',$match[0][0]);
+
+    preg_match_all("/<h1>.*?<\/h1>/ism",$output,$title);
+    $tl=iconv('gb2312', 'utf-8//ignore', $title[0][0]);
+    echo $tl;
+    preg_match_all("/<p>.*?<div.*?class=\"mingzhuPage\".*?>/ism",$output,$match);
+    $content=iconv('gb2312', 'utf-8//ignore', $match[0][0]);
+    $content=str_replace('输入：中华古籍oldbook.126.com','蘑菇泡www.mogupao.com',$content);
+    $content=str_replace('转载请保留','',$content);
+    $content=str_replace('mingzhuPage','',$content);
+
+    echo $content;
+    file_put_contents($num.'.txt',$tl.$content);
+}
+function insertTB(){
+    $server = "localhost";
+    $username = "root";
+    $password = "";
+    $dbname = "mingzhu";
+
+    try {
+        $conn = new PDO("mysql:host=$server;dbname=$dbname", $username, $password);
+        // 设置 PDO 错误模式，用于抛出异常
+        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $sql = "INSERT INTO xiyouji (title,content)
+        VALUES ('John', 'Doe', 'john@example.com')";
+        // 使用 exec() ，没有结果返回
+        $conn->exec($sql);
+        echo "新记录插入成功";
+    }
+    catch(PDOException $e)
+    {
+        echo $sql . "<br>" . $e->getMessage();
+    }
+
+    $conn = null;
+}
 //print_r($output);
