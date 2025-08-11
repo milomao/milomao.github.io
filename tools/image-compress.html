@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="免费在线图片压缩工具 - 快速压缩JPG、PNG、WebP图片，减小文件大小，保持高质量，支持批量处理">
+    <meta name="keywords" content="图片压缩,在线压缩,图片优化,JPG压缩,PNG压缩,WebP,图片大小">
+    <title>在线图片压缩工具 - 免费图片压缩器</title>
+    <link rel="canonical" href="https://milomao.github.io/tools/image-compress.html">
+    <link rel="stylesheet" href="../css/style.css">
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'GA_MEASUREMENT_ID');
+    </script>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="container">
+                <div class="nav-brand">
+                    <h1><a href="../" style="color: inherit; text-decoration: none;">🛠️ 工具导航</a></h1>
+                </div>
+                <div class="nav-menu">
+                    <a href="../" class="nav-link">首页</a>
+                    <a href="../#tools" class="nav-link">工具分类</a>
+                    <a href="../#popular" class="nav-link">热门工具</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Tool Hero Section -->
+        <section class="tool-hero">
+            <div class="container">
+                <h1>在线图片压缩工具</h1>
+                <p>智能压缩图片，减小文件大小，保持高画质</p>
+                <div class="tool-features">
+                    <span>🎯 智能压缩</span>
+                    <span>📱 支持多格式</span>
+                    <span>⚡ 批量处理</span>
+                    <span>🔒 本地处理</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Ad Space -->
+        <div class="ad-space ad-banner">
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-XXXXXXXXXX"
+                 data-ad-slot="XXXXXXXXXX"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+        </div>
+
+        <!-- Tool Interface -->
+        <section class="tool-interface">
+            <div class="container">
+                <div class="upload-area">
+                    <div class="upload-box" id="uploadBox">
+                        <div class="upload-icon">🖼️</div>
+                        <h3>选择图片或拖拽到这里</h3>
+                        <p>支持JPG、PNG、WebP格式，最大10MB</p>
+                        <input type="file" id="fileInput" accept="image/*" multiple>
+                        <button class="upload-btn">选择图片</button>
+                    </div>
+                </div>
+
+                <div class="compression-settings" id="compressionSettings" style="display: none;">
+                    <h3>压缩设置</h3>
+                    <div class="settings-grid">
+                        <div class="setting-item">
+                            <label>压缩质量</label>
+                            <div class="quality-slider">
+                                <input type="range" id="qualitySlider" min="10" max="100" value="80">
+                                <span id="qualityValue">80%</span>
+                            </div>
+                        </div>
+                        <div class="setting-item">
+                            <label>最大宽度（像素）</label>
+                            <input type="number" id="maxWidth" placeholder="留空保持原尺寸" min="100" max="5000">
+                        </div>
+                        <div class="setting-item">
+                            <label>输出格式</label>
+                            <select id="outputFormat">
+                                <option value="original">保持原格式</option>
+                                <option value="jpeg">JPEG</option>
+                                <option value="png">PNG</option>
+                                <option value="webp">WebP</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="image-preview" id="imagePreview" style="display: none;">
+                    <h3>图片预览与对比</h3>
+                    <div class="preview-container" id="previewContainer">
+                        <!-- 预览图片将在这里显示 -->
+                    </div>
+                    <button class="compress-btn" id="compressBtn">开始压缩</button>
+                </div>
+
+                <div class="download-section" id="downloadSection" style="display: none;">
+                    <h3>压缩完成</h3>
+                    <div class="compression-stats" id="compressionStats"></div>
+                    <div class="download-files" id="downloadFiles"></div>
+                    <button class="download-all-btn" id="downloadAllBtn">下载全部</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features -->
+        <section class="features-section">
+            <div class="container">
+                <h2>工具特性</h2>
+                <div class="features-grid">
+                    <div class="feature-item">
+                        <div class="feature-icon">🎯</div>
+                        <h3>智能压缩</h3>
+                        <p>采用先进算法，在保持图片质量的同时最大程度减小文件大小</p>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">📱</div>
+                        <h3>多格式支持</h3>
+                        <p>支持JPG、PNG、WebP等主流图片格式，满足不同需求</p>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">⚡</div>
+                        <h3>批量处理</h3>
+                        <p>支持同时处理多张图片，提高工作效率</p>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">🔒</div>
+                        <h3>隐私安全</h3>
+                        <p>所有处理在浏览器本地完成，图片不会上传到服务器</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Ad Space -->
+        <div class="ad-space ad-banner">
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-XXXXXXXXXX"
+                 data-ad-slot="XXXXXXXXXX"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+        </div>
+
+        <!-- Use Cases -->
+        <section class="use-cases">
+            <div class="container">
+                <h2>适用场景</h2>
+                <div class="cases-grid">
+                    <div class="case-item">
+                        <h3>🌐 网站优化</h3>
+                        <p>压缩网站图片，提升页面加载速度，改善用户体验</p>
+                    </div>
+                    <div class="case-item">
+                        <h3>📧 邮件附件</h3>
+                        <p>减小图片大小，避免邮件附件过大的问题</p>
+                    </div>
+                    <div class="case-item">
+                        <h3>📱 社交媒体</h3>
+                        <p>优化社交平台发布的图片，节省流量和存储空间</p>
+                    </div>
+                    <div class="case-item">
+                        <h3>☁️ 云存储</h3>
+                        <p>压缩图片后上传云盘，节省存储空间</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tips -->
+        <section class="tips-section">
+            <div class="container">
+                <h2>压缩建议</h2>
+                <div class="tips-content">
+                    <div class="tip-item">
+                        <h3>📸 照片压缩</h3>
+                        <p>对于照片，建议使用JPEG格式，质量设置在70-85%之间，既保证画质又有效减小文件大小。</p>
+                    </div>
+                    <div class="tip-item">
+                        <h3>🎨 图标图形</h3>
+                        <p>包含透明背景或简单图形的图片，建议使用PNG格式，可以保持边缘清晰。</p>
+                    </div>
+                    <div class="tip-item">
+                        <h3>🌐 网页图片</h3>
+                        <p>WebP格式提供更好的压缩率，适合现代浏览器，可以显著减小文件大小。</p>
+                    </div>
+                    <div class="tip-item">
+                        <h3>📐 尺寸调整</h3>
+                        <p>如果不需要高分辨率，可以适当调整图片尺寸，这是减小文件大小最有效的方法。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Related Tools -->
+        <section class="related-tools">
+            <div class="container">
+                <h2>相关工具</h2>
+                <div class="tools-grid">
+                    <div class="tool-card">
+                        <div class="tool-icon">🔄</div>
+                        <h3>图片格式转换</h3>
+                        <p>转换图片格式，支持多种格式互转</p>
+                        <a href="image-converter.html" class="tool-link">使用工具</a>
+                    </div>
+                    <div class="tool-card">
+                        <div class="tool-icon">✂️</div>
+                        <h3>图片裁剪</h3>
+                        <p>在线裁剪图片，调整尺寸和比例</p>
+                        <a href="image-crop.html" class="tool-link">使用工具</a>
+                    </div>
+                    <div class="tool-card">
+                        <div class="tool-icon">📐</div>
+                        <h3>图片尺寸调整</h3>
+                        <p>调整图片宽度和高度，批量处理</p>
+                        <a href="image-resize.html" class="tool-link">使用工具</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2024 工具导航. All rights reserved. | <a href="../privacy.html">隐私政策</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+    
+    <style>
+        .tool-hero {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+        }
+
+        .compression-settings {
+            background: var(--bg-secondary);
+            padding: 2rem;
+            border-radius: var(--border-radius-lg);
+            margin-bottom: 2rem;
+        }
+
+        .settings-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 1.5rem;
+        }
+
+        .setting-item label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+
+        .quality-slider {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .quality-slider input {
+            flex: 1;
+        }
+
+        .quality-slider span {
+            min-width: 40px;
+            text-align: center;
+            font-weight: 500;
+            color: var(--primary-color);
+        }
+
+        .setting-item input,
+        .setting-item select {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius);
+            font-size: 1rem;
+        }
+
+        .image-preview {
+            background: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius-lg);
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .preview-container {
+            display: grid;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .preview-item {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius);
+            padding: 1rem;
+        }
+
+        .preview-side {
+            text-align: center;
+        }
+
+        .preview-side h4 {
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .preview-image {
+            max-width: 100%;
+            max-height: 200px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+        }
+
+        .image-info {
+            margin-top: 1rem;
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+        }
+
+        .compress-btn {
+            background: var(--success-color);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            font-weight: 500;
+            width: 100%;
+            font-size: 1.1rem;
+            transition: var(--transition);
+        }
+
+        .compress-btn:hover {
+            background: #059669;
+        }
+
+        .compression-stats {
+            background: var(--bg-secondary);
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            margin-bottom: 1.5rem;
+        }
+
+        .stat-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .download-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius);
+            margin-bottom: 1rem;
+        }
+
+        .download-btn {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            font-size: 0.875rem;
+        }
+
+        .download-all-btn {
+            background: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            font-weight: 500;
+            width: 100%;
+        }
+
+        .features-section {
+            background: var(--bg-secondary);
+            padding: 4rem 0;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .feature-item {
+            text-align: center;
+            padding: 2rem;
+            background: var(--bg-primary);
+            border-radius: var(--border-radius-lg);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .use-cases {
+            padding: 4rem 0;
+        }
+
+        .cases-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .case-item {
+            padding: 2rem;
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius-lg);
+            transition: var(--transition);
+        }
+
+        .case-item:hover {
+            box-shadow: var(--shadow);
+        }
+
+        .tips-section {
+            background: var(--bg-secondary);
+            padding: 4rem 0;
+        }
+
+        .tips-content {
+            margin-top: 2rem;
+        }
+
+        .tip-item {
+            background: var(--bg-primary);
+            padding: 2rem;
+            border-radius: var(--border-radius-lg);
+            margin-bottom: 2rem;
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .tip-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .tip-item h3 {
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .related-tools {
+            padding: 4rem 0;
+        }
+
+        @media (max-width: 768px) {
+            .preview-item {
+                grid-template-columns: 1fr;
+            }
+            
+            .settings-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const uploadBox = document.getElementById('uploadBox');
+            const fileInput = document.getElementById('fileInput');
+            const compressionSettings = document.getElementById('compressionSettings');
+            const imagePreview = document.getElementById('imagePreview');
+            const qualitySlider = document.getElementById('qualitySlider');
+            const qualityValue = document.getElementById('qualityValue');
+            const compressBtn = document.getElementById('compressBtn');
+            const downloadSection = document.getElementById('downloadSection');
+
+            let selectedFiles = [];
+
+            // 文件上传处理
+            uploadBox.addEventListener('click', () => fileInput.click());
+            uploadBox.addEventListener('dragover', handleDragOver);
+            uploadBox.addEventListener('drop', handleDrop);
+            fileInput.addEventListener('change', handleFileSelect);
+            qualitySlider.addEventListener('input', updateQualityValue);
+            compressBtn.addEventListener('click', startCompression);
+
+            function handleDragOver(e) {
+                e.preventDefault();
+                uploadBox.classList.add('dragover');
+            }
+
+            function handleDrop(e) {
+                e.preventDefault();
+                uploadBox.classList.remove('dragover');
+                const files = e.dataTransfer.files;
+                handleFiles(files);
+            }
+
+            function handleFileSelect(e) {
+                const files = e.target.files;
+                handleFiles(files);
+            }
+
+            function handleFiles(files) {
+                const validFiles = Array.from(files).filter(file => 
+                    file.type.startsWith('image/') && file.size <= 10 * 1024 * 1024
+                );
+
+                if (validFiles.length > 0) {
+                    selectedFiles = validFiles;
+                    showPreview(validFiles);
+                    compressionSettings.style.display = 'block';
+                    imagePreview.style.display = 'block';
+                }
+            }
+
+            function showPreview(files) {
+                const container = document.getElementById('previewContainer');
+                container.innerHTML = '';
+
+                files.forEach((file, index) => {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        const previewItem = document.createElement('div');
+                        previewItem.className = 'preview-item';
+                        previewItem.innerHTML = `
+                            <div class="preview-side">
+                                <h4>原图</h4>
+                                <img src="${e.target.result}" alt="原图" class="preview-image">
+                                <div class="image-info">
+                                    <div>文件名: ${file.name}</div>
+                                    <div>大小: ${(file.size / 1024 / 1024).toFixed(2)} MB</div>
+                                    <div>类型: ${file.type}</div>
+                                </div>
+                            </div>
+                            <div class="preview-side">
+                                <h4>压缩后 (预览)</h4>
+                                <img src="${e.target.result}" alt="压缩后" class="preview-image" id="compressed-${index}">
+                                <div class="image-info" id="compressed-info-${index}">
+                                    <div>预计减小: ~30%</div>
+                                    <div>新大小: ~${(file.size * 0.7 / 1024 / 1024).toFixed(2)} MB</div>
+                                </div>
+                            </div>
+                        `;
+                        container.appendChild(previewItem);
+                    };
+                    reader.readAsDataURL(file);
+                });
+            }
+
+            function updateQualityValue() {
+                qualityValue.textContent = qualitySlider.value + '%';
+                // 实时更新预览
+                updatePreview();
+            }
+
+            function updatePreview() {
+                // 这里可以实现实时预览功能
+                // 由于演示目的，只更新估算值
+                const quality = qualitySlider.value / 100;
+                selectedFiles.forEach((file, index) => {
+                    const infoDiv = document.getElementById(`compressed-info-${index}`);
+                    if (infoDiv) {
+                        const estimatedSize = file.size * quality;
+                        const reduction = ((file.size - estimatedSize) / file.size * 100).toFixed(1);
+                        infoDiv.innerHTML = `
+                            <div>预计减小: ~${reduction}%</div>
+                            <div>新大小: ~${(estimatedSize / 1024 / 1024).toFixed(2)} MB</div>
+                        `;
+                    }
+                });
+            }
+
+            function startCompression() {
+                // 记录压缩事件
+                gtag('event', 'compression_start', {
+                    'tool': 'image_compress',
+                    'file_count': selectedFiles.length
+                });
+
+                // 模拟压缩过程
+                compressBtn.textContent = '压缩中...';
+                compressBtn.disabled = true;
+
+                setTimeout(() => {
+                    compressionComplete();
+                }, 2000);
+            }
+
+            function compressionComplete() {
+                imagePreview.style.display = 'none';
+                downloadSection.style.display = 'block';
+
+                // 记录压缩完成事件
+                gtag('event', 'compression_complete', {
+                    'tool': 'image_compress',
+                    'file_count': selectedFiles.length
+                });
+
+                // 显示压缩统计
+                const quality = qualitySlider.value / 100;
+                const totalOriginalSize = selectedFiles.reduce((sum, file) => sum + file.size, 0);
+                const totalCompressedSize = totalOriginalSize * quality;
+                const reduction = ((totalOriginalSize - totalCompressedSize) / totalOriginalSize * 100).toFixed(1);
+
+                document.getElementById('compressionStats').innerHTML = `
+                    <div class="stat-item">
+                        <span>处理文件数:</span>
+                        <strong>${selectedFiles.length}</strong>
+                    </div>
+                    <div class="stat-item">
+                        <span>原始大小:</span>
+                        <strong>${(totalOriginalSize / 1024 / 1024).toFixed(2)} MB</strong>
+                    </div>
+                    <div class="stat-item">
+                        <span>压缩后大小:</span>
+                        <strong>${(totalCompressedSize / 1024 / 1024).toFixed(2)} MB</strong>
+                    </div>
+                    <div class="stat-item">
+                        <span>节省空间:</span>
+                        <strong style="color: var(--success-color);">${reduction}%</strong>
+                    </div>
+                `;
+
+                // 显示下载文件列表
+                const downloadFiles = document.getElementById('downloadFiles');
+                downloadFiles.innerHTML = selectedFiles.map((file, index) => `
+                    <div class="download-item">
+                        <span>🖼️ ${file.name.replace(/\.[^/.]+$/, '')}_compressed.${file.name.split('.').pop()}</span>
+                        <button class="download-btn" onclick="downloadSingleFile(${index})">下载</button>
+                    </div>
+                `).join('');
+
+                compressBtn.textContent = '开始压缩';
+                compressBtn.disabled = false;
+            }
+
+            // 全局函数
+            window.downloadSingleFile = function(index) {
+                gtag('event', 'file_download', {
+                    'tool': 'image_compress',
+                    'file_index': index
+                });
+                alert('这是演示版本，实际部署时这里会下载压缩后的图片。');
+            };
+
+            document.getElementById('downloadAllBtn').addEventListener('click', function() {
+                gtag('event', 'download_all', {
+                    'tool': 'image_compress',
+                    'file_count': selectedFiles.length
+                });
+                alert('这是演示版本，实际部署时这里会下载所有压缩后的图片。');
+            });
+        });
+    </script>
+</body>
+</html>

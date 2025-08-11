@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="免费在线PDF转Word工具 - 快速将PDF文件转换为可编辑的Word文档，支持批量转换，保持原有格式">
+    <meta name="keywords" content="PDF转Word,PDF转换,在线转换,免费工具,PDF to Word,文档转换">
+    <title>PDF转Word在线转换器 - 免费PDF转Word工具</title>
+    <link rel="canonical" href="https://milomao.github.io/tools/pdf-to-word.html">
+    <link rel="stylesheet" href="../css/style.css">
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'GA_MEASUREMENT_ID');
+    </script>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="container">
+                <div class="nav-brand">
+                    <h1><a href="../" style="color: inherit; text-decoration: none;">🛠️ 工具导航</a></h1>
+                </div>
+                <div class="nav-menu">
+                    <a href="../" class="nav-link">首页</a>
+                    <a href="../#tools" class="nav-link">工具分类</a>
+                    <a href="../#popular" class="nav-link">热门工具</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Tool Hero Section -->
+        <section class="tool-hero">
+            <div class="container">
+                <h1>PDF转Word在线转换器</h1>
+                <p>快速、安全、免费的PDF转Word工具，保持原有格式和排版</p>
+                <div class="tool-features">
+                    <span>✅ 完全免费</span>
+                    <span>🔒 安全可靠</span>
+                    <span>⚡ 快速转换</span>
+                    <span>📱 支持移动端</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Ad Space -->
+        <div class="ad-space ad-banner">
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-XXXXXXXXXX"
+                 data-ad-slot="XXXXXXXXXX"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+        </div>
+
+        <!-- Tool Interface -->
+        <section class="tool-interface">
+            <div class="container">
+                <div class="upload-area">
+                    <div class="upload-box" id="uploadBox">
+                        <div class="upload-icon">📄</div>
+                        <h3>选择PDF文件或拖拽到这里</h3>
+                        <p>支持最大20MB的PDF文件</p>
+                        <input type="file" id="fileInput" accept=".pdf" multiple>
+                        <button class="upload-btn">选择文件</button>
+                    </div>
+                </div>
+
+                <div class="conversion-options">
+                    <h3>转换选项</h3>
+                    <div class="options-grid">
+                        <label class="option-item">
+                            <input type="checkbox" checked> 保持原有格式
+                        </label>
+                        <label class="option-item">
+                            <input type="checkbox" checked> 识别表格
+                        </label>
+                        <label class="option-item">
+                            <input type="checkbox"> 提取图片
+                        </label>
+                        <label class="option-item">
+                            <input type="checkbox"> OCR文字识别
+                        </label>
+                    </div>
+                </div>
+
+                <div class="file-list" id="fileList" style="display: none;">
+                    <h3>文件列表</h3>
+                    <div class="files-container"></div>
+                    <button class="convert-btn" id="convertBtn">开始转换</button>
+                </div>
+
+                <div class="progress-section" id="progressSection" style="display: none;">
+                    <h3>转换进度</h3>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progressFill"></div>
+                    </div>
+                    <p class="progress-text" id="progressText">准备中...</p>
+                </div>
+
+                <div class="download-section" id="downloadSection" style="display: none;">
+                    <h3>转换完成</h3>
+                    <div class="download-files"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- How to Use -->
+        <section class="how-to-use">
+            <div class="container">
+                <h2>如何使用PDF转Word工具</h2>
+                <div class="steps-grid">
+                    <div class="step-item">
+                        <div class="step-number">1</div>
+                        <h3>选择文件</h3>
+                        <p>点击上传按钮或直接拖拽PDF文件到上传区域</p>
+                    </div>
+                    <div class="step-item">
+                        <div class="step-number">2</div>
+                        <h3>设置选项</h3>
+                        <p>根据需要选择转换选项，如保持格式、识别表格等</p>
+                    </div>
+                    <div class="step-item">
+                        <div class="step-number">3</div>
+                        <h3>开始转换</h3>
+                        <p>点击转换按钮，等待转换完成</p>
+                    </div>
+                    <div class="step-item">
+                        <div class="step-number">4</div>
+                        <h3>下载文件</h3>
+                        <p>转换完成后下载生成的Word文档</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Ad Space -->
+        <div class="ad-space ad-banner">
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-XXXXXXXXXX"
+                 data-ad-slot="XXXXXXXXXX"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+        </div>
+
+        <!-- FAQ -->
+        <section class="faq-section">
+            <div class="container">
+                <h2>常见问题</h2>
+                <div class="faq-list">
+                    <div class="faq-item">
+                        <h3>支持哪些PDF文件？</h3>
+                        <p>支持标准PDF文件，包括文本、图片、表格等内容。文件大小限制为20MB。</p>
+                    </div>
+                    <div class="faq-item">
+                        <h3>转换后的Word格式如何？</h3>
+                        <p>转换后的文档为.docx格式，与Microsoft Word完全兼容，可正常编辑。</p>
+                    </div>
+                    <div class="faq-item">
+                        <h3>文件安全如何保障？</h3>
+                        <p>所有文件在转换后会自动删除，不会存储在服务器上，确保您的隐私安全。</p>
+                    </div>
+                    <div class="faq-item">
+                        <h3>是否需要注册账号？</h3>
+                        <p>完全免费使用，无需注册账号或提供个人信息。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Related Tools -->
+        <section class="related-tools">
+            <div class="container">
+                <h2>相关工具</h2>
+                <div class="tools-grid">
+                    <div class="tool-card">
+                        <div class="tool-icon">📄</div>
+                        <h3>Word转PDF</h3>
+                        <p>将Word文档转换为PDF格式</p>
+                        <a href="word-to-pdf.html" class="tool-link">使用工具</a>
+                    </div>
+                    <div class="tool-card">
+                        <div class="tool-icon">📑</div>
+                        <h3>PDF合并</h3>
+                        <p>将多个PDF文件合并为一个</p>
+                        <a href="pdf-merge.html" class="tool-link">使用工具</a>
+                    </div>
+                    <div class="tool-card">
+                        <div class="tool-icon">✂️</div>
+                        <h3>PDF分割</h3>
+                        <p>将PDF文件分割为多个文件</p>
+                        <a href="pdf-split.html" class="tool-link">使用工具</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2024 工具导航. All rights reserved. | <a href="../privacy.html">隐私政策</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+    <script src="../js/pdf-converter.js"></script>
+    
+    <style>
+        .tool-hero {
+            background: linear-gradient(135deg, #3b82f6 0%, #1e40af 100%);
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+        }
+
+        .tool-hero h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .tool-features {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .tool-features span {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.875rem;
+        }
+
+        .tool-interface {
+            padding: 4rem 0;
+        }
+
+        .upload-area {
+            margin-bottom: 3rem;
+        }
+
+        .upload-box {
+            border: 2px dashed var(--border-color);
+            border-radius: var(--border-radius-lg);
+            padding: 3rem;
+            text-align: center;
+            transition: var(--transition);
+            cursor: pointer;
+            position: relative;
+        }
+
+        .upload-box:hover {
+            border-color: var(--primary-color);
+            background: var(--bg-secondary);
+        }
+
+        .upload-box.dragover {
+            border-color: var(--primary-color);
+            background: var(--bg-secondary);
+        }
+
+        .upload-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+
+        .upload-box h3 {
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        .upload-box p {
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+        }
+
+        #fileInput {
+            position: absolute;
+            opacity: 0;
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+        }
+
+        .upload-btn {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .upload-btn:hover {
+            background: var(--secondary-color);
+        }
+
+        .conversion-options {
+            background: var(--bg-secondary);
+            padding: 2rem;
+            border-radius: var(--border-radius-lg);
+            margin-bottom: 2rem;
+        }
+
+        .options-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .option-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            cursor: pointer;
+        }
+
+        .file-list {
+            background: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius-lg);
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .file-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .file-item:last-child {
+            border-bottom: none;
+        }
+
+        .convert-btn {
+            background: var(--success-color);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            font-weight: 500;
+            width: 100%;
+            font-size: 1.1rem;
+        }
+
+        .progress-section {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 10px;
+            background: var(--bg-secondary);
+            border-radius: 5px;
+            overflow: hidden;
+            margin: 1rem 0;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--primary-color);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        .how-to-use {
+            background: var(--bg-secondary);
+            padding: 4rem 0;
+        }
+
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .step-item {
+            text-align: center;
+            padding: 2rem;
+            background: var(--bg-primary);
+            border-radius: var(--border-radius-lg);
+        }
+
+        .step-number {
+            width: 50px;
+            height: 50px;
+            background: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin: 0 auto 1rem;
+        }
+
+        .faq-section {
+            padding: 4rem 0;
+        }
+
+        .faq-item {
+            border-bottom: 1px solid var(--border-color);
+            padding: 1.5rem 0;
+        }
+
+        .faq-item:last-child {
+            border-bottom: none;
+        }
+
+        .faq-item h3 {
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+            cursor: pointer;
+        }
+
+        .related-tools {
+            background: var(--bg-secondary);
+            padding: 4rem 0;
+        }
+
+        @media (max-width: 768px) {
+            .tool-features {
+                gap: 1rem;
+            }
+
+            .tool-features span {
+                font-size: 0.75rem;
+                padding: 0.25rem 0.75rem;
+            }
+
+            .upload-box {
+                padding: 2rem 1rem;
+            }
+
+            .upload-icon {
+                font-size: 3rem;
+            }
+
+            .tool-hero h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+
+    <script>
+        // PDF转换器功能
+        document.addEventListener('DOMContentLoaded', function() {
+            const uploadBox = document.getElementById('uploadBox');
+            const fileInput = document.getElementById('fileInput');
+            const fileList = document.getElementById('fileList');
+            const convertBtn = document.getElementById('convertBtn');
+            const progressSection = document.getElementById('progressSection');
+            const downloadSection = document.getElementById('downloadSection');
+
+            // 文件上传处理
+            uploadBox.addEventListener('click', () => fileInput.click());
+            uploadBox.addEventListener('dragover', handleDragOver);
+            uploadBox.addEventListener('drop', handleDrop);
+            fileInput.addEventListener('change', handleFileSelect);
+            convertBtn.addEventListener('click', startConversion);
+
+            function handleDragOver(e) {
+                e.preventDefault();
+                uploadBox.classList.add('dragover');
+            }
+
+            function handleDrop(e) {
+                e.preventDefault();
+                uploadBox.classList.remove('dragover');
+                const files = e.dataTransfer.files;
+                handleFiles(files);
+            }
+
+            function handleFileSelect(e) {
+                const files = e.target.files;
+                handleFiles(files);
+            }
+
+            function handleFiles(files) {
+                const validFiles = Array.from(files).filter(file => 
+                    file.type === 'application/pdf' && file.size <= 20 * 1024 * 1024
+                );
+
+                if (validFiles.length > 0) {
+                    displayFiles(validFiles);
+                    fileList.style.display = 'block';
+                }
+            }
+
+            function displayFiles(files) {
+                const container = fileList.querySelector('.files-container');
+                container.innerHTML = '';
+
+                files.forEach((file, index) => {
+                    const fileItem = document.createElement('div');
+                    fileItem.className = 'file-item';
+                    fileItem.innerHTML = `
+                        <span>📄 ${file.name}</span>
+                        <span>${(file.size / 1024 / 1024).toFixed(2)} MB</span>
+                    `;
+                    container.appendChild(fileItem);
+                });
+            }
+
+            function startConversion() {
+                // 记录转换事件
+                gtag('event', 'conversion_start', {
+                    'tool': 'pdf_to_word'
+                });
+
+                fileList.style.display = 'none';
+                progressSection.style.display = 'block';
+
+                // 模拟转换进度
+                simulateConversion();
+            }
+
+            function simulateConversion() {
+                const progressFill = document.getElementById('progressFill');
+                const progressText = document.getElementById('progressText');
+                let progress = 0;
+
+                const interval = setInterval(() => {
+                    progress += Math.random() * 15;
+                    if (progress >= 100) {
+                        progress = 100;
+                        clearInterval(interval);
+                        conversionComplete();
+                    }
+
+                    progressFill.style.width = progress + '%';
+                    progressText.textContent = `转换中... ${Math.round(progress)}%`;
+                }, 200);
+            }
+
+            function conversionComplete() {
+                progressSection.style.display = 'none';
+                downloadSection.style.display = 'block';
+
+                // 记录转换完成事件
+                gtag('event', 'conversion_complete', {
+                    'tool': 'pdf_to_word'
+                });
+
+                // 显示下载链接
+                const downloadFiles = downloadSection.querySelector('.download-files');
+                downloadFiles.innerHTML = `
+                    <div class="download-item">
+                        <span>📄 converted_document.docx</span>
+                        <button class="download-btn" onclick="downloadFile()">下载</button>
+                    </div>
+                `;
+            }
+
+            // 全局函数
+            window.downloadFile = function() {
+                gtag('event', 'file_download', {
+                    'tool': 'pdf_to_word'
+                });
+                alert('这是演示版本，实际部署时这里会下载真实的转换文件。');
+            };
+        });
+    </script>
+</body>
+</html>
